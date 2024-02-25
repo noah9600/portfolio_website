@@ -1,18 +1,24 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+
+const ProjectsSection = () => {
+  const [tag, setTag] = useState("All");
 
 const projectsData = [
   {
     id: 1,
-    title: "React Portfolio Website",
-    description: "Project 1 description",
-    image: "/images/projects/1.jpg",
+    title: "Renting Website",
+    description: "Next js, Typescript",
+    image: "/images/projects/image1.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://renting-app-three.vercel.app/",
+    previewUrl: "https://renting-app-three.vercel.app/",
   },
   {
     id: 2,
@@ -61,68 +67,70 @@ const projectsData = [
   },
 ];
 
-const ProjectsSection = () => {
-  const [tag, setTag] = useState("All");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+const filteredProjects = projectsData.filter((project) =>
+project.tag.includes(tag)
+);
 
-  const handleTagChange = (newTag) => {
-    setTag(newTag);
-  };
+const cardVariants = {
+initial: { y: 50, opacity: 0 },
+animate: { y: 0, opacity: 1 },
+};
 
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
+const settings = {
+dots: true,
+infinite: true,
+speed: 500,
+slidesToShow: 3, // Number of slides to show at a time
+slidesToScroll: 1, // Number of slides to scroll on next/prev
+responsive: [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 2,
+    },
+  },
+  {
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 1,
+    },
+  },
+],
+};
 
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
+const handleTagChange = (newTag) => {
+setTag(newTag);
+};
 
-  return (
-    <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
-      </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
+return (
+<section id="projects">
+  <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
+    My Projects
+  </h2>
+  <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
+    
+  </div>
+  <Slider {...settings}>
+    {filteredProjects.map((project) => (
+      <motion.div
+        key={project.id}
+        variants={cardVariants}
+        initial="initial"
+        animate="animate"
+        transition={{ duration: 0.3 }}
+      >
+        <ProjectCard
+          title={project.title}
+          description={project.description}
+          imgUrl={project.image}
+          gitUrl={project.gitUrl}
+          previewUrl={project.previewUrl}
         />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
-        />
-      </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {filteredProjects.map((project, index) => (
-          <motion.li
-            key={index}
-            variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
-          >
-            <ProjectCard
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              imgUrl={project.image}
-              gitUrl={project.gitUrl}
-              previewUrl={project.previewUrl}
-            />
-          </motion.li>
-        ))}
-      </ul>
-    </section>
-  );
+      </motion.div>
+    ))}
+  </Slider>
+</section>
+);
 };
 
 export default ProjectsSection;

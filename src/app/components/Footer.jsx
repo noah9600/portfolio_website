@@ -8,23 +8,7 @@ const Footer = () => {
         <span className="mr-12">TKG</span>
         <div className="flex flex-row items-center space-x-9">
           <a
-            href="https://twitter.com/nw6dgdb74th8hfh8a8wa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-600 ml-9"
-          >
-            <FaTwitter size="50px" />
-          </a>
-          <a
-            href="https://www.instagram.com/nw6dgdb74th8hfh8a8wa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-red-400 hover:text-red-600"
-          >
-            <FaInstagram size="50px" />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/nw6dgdb74th8hfh8a8wa"
+            href="https://www.linkedin.com/in/mao-tabuchi-9b7698240/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800"
@@ -32,7 +16,7 @@ const Footer = () => {
             <FaLinkedinIn size="50px" />
           </a>
           <a
-            href="https://github.com/nw6dgdb74th8hfh8a8wa"
+            href="https://github.com/noah9600"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-gray-600"

@@ -61,14 +61,15 @@ const AboutSection = () => {
   return (
 <section className='text-white' id="about" >
     <div className='md:grid md:grid-cols-2 gap-8 items-center py-8 px-8 xl:gap-16 sm:py-16 xl:px-16' >
-        <Image src="/images/daniel-korpai-8GDCzWrcE3M-unsplash.jpg" width={550} height={400} />
+        <Image src="/images/windows-v94mlgvsza4-unsplash.jpg" width={500} height={350} />
 
         <div className='mt-4 md:mt-0 text-left flex flex-col h-full'>
 
         <div className="ml-6 relative font-extrabold text-3xl ">
             <div className="text-wrapper relative inline-block pt-1 pr-0.5 pb-0.1 overflow-hidden">
                 <span className="letter inline-block leading-none ">
-                <AnimeLetter  />
+                    <h2>About Me</h2>
+
                 </span>
             </div>
         </div>
